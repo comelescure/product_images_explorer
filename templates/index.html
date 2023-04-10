@@ -29,25 +29,32 @@
             height: 50px;
             width: 100%;
         }
+        .title {
+            color: #1a1a1a; /* Couleur du texte en bleu foncé */
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Police pertinente */
+            font-weight: bold; /* Police en gras */
+        }
     </style>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application de recherche d'images</title>
+    <title>Check products by images</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Application de recherche d'images</h1>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="title" style="display: inline;">Check products by images</h1>
+                <img src="https://media.licdn.com/dms/image/C4D0BAQHsraTd3xGEjA/company-logo_200_200/0/1519881983985?e=2147483647&v=beta&t=C_GVpdZcmq0khwgVS5MGgOlaj3zPAIzZDBQaC0HlyyI" alt="Logo de l'entreprise" style="height: 200px; margin-left: 20px;">
 
-        <!-- Ajoutez la navigation avec les onglets ici -->
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#tab1">Onglet 1</a></li>
-            <li><a data-toggle="tab" href="#tab2">Onglet 2</a></li>
-        </ul>
-
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#tab1">Onglet 1</a></li>
+                    <li><a data-toggle="tab" href="#tab2">Onglet 2</a></li>
+                </ul>
+            </div>
         <div class="tab-content">
             <div id="tab1" class="tab-pane fade in active">
                 <div class="row">
@@ -57,8 +64,8 @@
                                 <label for="product-names">Noms des produits (un par ligne):</label>
                                 <textarea class="form-control" id="product-names" rows="10" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Chercher les images</button>
-                            <button id="download-button" type="button" class="btn btn-success btn-block" hidden>Télécharger le CSV</button>
+                            <button type="submit" class="btn btn-primary btn-block">Load Images</button>
+                            <button id="download-button" type="button" class="btn btn-success btn-block" hidden>Download CSV</button>
                         </form>
                     </div>
                 </div>
@@ -68,7 +75,7 @@
                 <h3>Produits filtrés</h3>
                 <select id="filter-select" class="form-control" style="width: 50%;"></select>
                 <div id="filtered-product-names"></div>
-                <button id="regex-test-button" class="btn btn-primary" style="margin-top: 10px;">Tester les regex</button>
+                <button id="regex-test-button" class="btn btn-primary" style="margin-top: 10px;">Tester regex</button>
             </div>
         </div>
     </div>
