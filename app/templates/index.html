@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .custom-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+    
+        .panel-heading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+        }
+    
+        .panel-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .input-group {
+            margin-top: 10px;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            width: 100%;
+        }
+    </style>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application de recherche d'images</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Application de recherche d'images</h1>
+
+        <!-- Ajoutez la navigation avec les onglets ici -->
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#tab1">Onglet 1</a></li>
+            <li><a data-toggle="tab" href="#tab2">Onglet 2</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="tab1" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <form id="search-form">
+                            <div class="form-group">
+                                <label for="product-names">Noms des produits (un par ligne):</label>
+                                <textarea class="form-control" id="product-names" rows="10" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Chercher les images</button>
+                            <button id="download-button" type="button" class="btn btn-success btn-block" hidden>Télécharger le CSV</button>
+                        </form>
+                    </div>
+                </div>
+                <div id="results" class="row" style="margin-top: 20px;"></div>
+            </div>
+            <div id="tab2" class="tab-pane fade">
+                <h3>Produits filtrés</h3>
+                <select id="filter-select" class="form-control" style="width: 50%;"></select>
+                <div id="filtered-product-names"></div>
+                <button id="regex-test-button" class="btn btn-primary" style="margin-top: 10px;">Tester les regex</button>
+            </div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
