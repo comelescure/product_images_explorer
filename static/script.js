@@ -43,7 +43,8 @@ function createImagePanel(productName, imageUrl) {
 
 function downloadCSV() {
     const panelHeadings = document.querySelectorAll("#results .panel-heading");
-    const userInfos = document.querySelectorAll(".form-control");
+    const allUserInfos = document.querySelectorAll(".form-control");
+    const userInfos = Array.from(allUserInfos).slice(1); // Exclut la première zone de texte
 
     let csvContent = "data:text/csv;charset=utf-8,";
     csvContent += "name,user_info\n";
@@ -59,7 +60,6 @@ function downloadCSV() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-
 }
 
 
@@ -73,7 +73,7 @@ function getUniqueUserInputs() {
     const userInputs = document.querySelectorAll(".form-control");
     const uniqueInputs = new Set();
 
-    // Ignorer la première zone de texte en utilisant slice(1)
+    // Ignorer la première zone de texte
     const userInputsArray = Array.from(userInputs).slice(1);
 
     userInputsArray.forEach(input => {
@@ -155,7 +155,7 @@ document.getElementById("filter-select").addEventListener("change", function (ev
     const productNames = document.getElementById("product-names").value.split("\n").map(name => name.trim());
     const userInfos = document.querySelectorAll(".form-control");
 
-    // Ignorer la première zone de texte en utilisant slice(1)
+    // Ignorer la première zone de texte 
     const userInfosArray = Array.from(userInfos).slice(1);
 
     productNames.forEach((productName, index) => {
