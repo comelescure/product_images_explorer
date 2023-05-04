@@ -40,7 +40,7 @@ function createImagePanel(productName, imageUrl) {
      // Créez un nouveau bouton
      const moreImagesButton = document.createElement("button");
      moreImagesButton.className = "btn btn-info";
-     moreImagesButton.textContent = "Voir plus d'images";
+     moreImagesButton.textContent = "See more images";
      moreImagesButton.style.marginTop = "10px";
  
      // Ajoutez un gestionnaire d'événements "click" au bouton
@@ -55,7 +55,7 @@ function createImagePanel(productName, imageUrl) {
      // Créez un nouveau bouton pour ChatGPT
     const askGPTButton = document.createElement("button");
     askGPTButton.className = "btn btn-info";
-    askGPTButton.textContent = "Ask to GPT";
+    askGPTButton.textContent = "Ask to GPT (Under development)";
     askGPTButton.style.marginTop = "10px";
 
     askGPTButton.addEventListener("click", async () => {
