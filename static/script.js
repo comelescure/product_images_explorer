@@ -62,6 +62,15 @@ function downloadCSV() {
     document.body.removeChild(link);
 }
 
+function createNotice() {
+    const noticeText = `
+    Welcome to our image-based product verification tool.
+    Enter a list of products, and the tool will generate the first Google image for each product.
+    If a product is misclassified, you can correct the category by entering the correct category under the relevant product.
+    You can also go to tab 2 to sort the products by category and use Regex.101 to create regular expressions.
+    `;
+    return noticeText;
+}
 
 
 
@@ -172,4 +181,6 @@ document.getElementById('regex-test-button').addEventListener('click', function(
 
     window.open(regex101Url, '_blank');
 });
+
+document.getElementById("notice").innerHTML = createNotice();
 

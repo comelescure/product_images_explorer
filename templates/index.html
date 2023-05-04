@@ -15,7 +15,7 @@
             justify-content: center;
             height: 50px;
         }
-    
+        
         .panel-body {
             display: flex;
             flex-direction: column;
@@ -34,6 +34,12 @@
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Police pertinente */
             font-weight: bold; /* Police en gras */
         }
+        /* Ajoutez cette partie de code ici */
+        #notice {
+            font-size: 14px;
+            font-style: italic;
+            padding: 10px;
+        }
     </style>
     
     <meta charset="UTF-8">
@@ -49,7 +55,7 @@
             <div class="col-md-12 text-center">
                 <h1 class="title" style="display: inline;">Check products by images</h1>
                 <img src="https://media.licdn.com/dms/image/C4D0BAQHsraTd3xGEjA/company-logo_200_200/0/1519881983985?e=2147483647&v=beta&t=C_GVpdZcmq0khwgVS5MGgOlaj3zPAIzZDBQaC0HlyyI" alt="Logo de l'entreprise" style="height: 200px; margin-left: 20px;">
-
+                <div id="notice" class="text-right"></div>
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#tab1">Onglet 1</a></li>
                     <li><a data-toggle="tab" href="#tab2">Onglet 2</a></li>
