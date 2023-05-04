@@ -58,10 +58,24 @@ function createImagePanel(productName, imageUrl) {
     askGPTButton.textContent = "Ask to GPT";
     askGPTButton.style.marginTop = "10px";
 
-    askGPTButton.addEventListener("click", () => {
+    askGPTButton.addEventListener("click", async () => {
         const gptResponseUrl = `/ask_gpt?question=${encodeURIComponent("What is this product?")}&product_name=${encodeURIComponent(productName)}`;
-        window.open(gptResponseUrl, '_blank');
+    
+        try {
+            const response = await fetch(gptResponseUrl);
+            const data = await response.json();
+    
+            if (data.response) {
+                alert(data.response);
+            } else {
+                alert("Pas de réponse de l'IA pour le moment.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Erreur lors de la récupération de la réponse de l'IA.");
+        }
     });
+    
     
 
     panelBody.appendChild(askGPTButton);
