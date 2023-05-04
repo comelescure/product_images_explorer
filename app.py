@@ -31,7 +31,7 @@ def get_image_url(product_name):
 
 def ask_gpt(prompt):
     response = openai.Completion.create(
-        engine="davinci-codex",
+        engine="davinci",
         prompt=prompt,
         max_tokens=50,
         n=1,
@@ -42,18 +42,14 @@ def ask_gpt(prompt):
     return response.choices[0].text.strip()
 
 @app.route('/ask_gpt', methods=['GET'])
-def ask_gpt(prompt):
-    response = openai.Completion.create(
-        engine="davinci-codex",
-        prompt=prompt,
-        max_tokens=50,
-        n=1,
-        stop=None,
-        temperature=0.5,
-    )
+def handle_ask_gpt():
+    question = request.args.get('question', '')
+    product_name = request.args.get('product_name', '')
+    
+    prompt = f"{question} {product_name}"
+    gpt_response = ask_gpt(prompt)
 
-    return response.choices[0].text.strip()
-
+    return jsonify({'response': gpt_response})
 
 if __name__ == "__main__":
     app.run(debug=True)
