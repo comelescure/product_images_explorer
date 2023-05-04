@@ -42,14 +42,18 @@ def ask_gpt(prompt):
     return response.choices[0].text.strip()
 
 @app.route('/ask_gpt', methods=['GET'])
-def handle_ask_gpt():
-    question = request.args.get('question', '')
-    product_name = request.args.get('product_name', '')
-    
-    prompt = f"{question} {product_name}"
-    gpt_response = ask_gpt(prompt)
+def ask_gpt(prompt):
+    response = openai.Completion.create(
+        engine="davinci",
+        prompt=f"J'ai besoin d'informations sur ce produit : {prompt}. Pouvez-vous me donner des détails ?",
+        max_tokens=100,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
 
-    return jsonify({'response': gpt_response})
+    return response.choices[0].text.strip()
+
 
 if __name__ == "__main__":
     app.run(debug=True)
