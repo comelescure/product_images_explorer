@@ -36,8 +36,25 @@ function createImagePanel(productName, imageUrl) {
     panel.appendChild(panelHeading);
     panel.appendChild(panelBody);
     col.appendChild(panel);
+    
+     // Créez un nouveau bouton
+     const moreImagesButton = document.createElement("button");
+     moreImagesButton.className = "btn btn-info";
+     moreImagesButton.textContent = "Voir plus d'images";
+     moreImagesButton.style.marginTop = "10px";
+ 
+     // Ajoutez un gestionnaire d'événements "click" au bouton
+     moreImagesButton.addEventListener("click", () => {
+         const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(productName)}&tbm=isch`;
+         window.open(searchUrl, '_blank');
+     });
+ 
+     // Ajoutez le bouton à la structure HTML
+     panelBody.appendChild(moreImagesButton);
 
     return col;
+    
+    
 }
 
 
