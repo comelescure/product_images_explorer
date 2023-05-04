@@ -14,8 +14,6 @@
             align-items: center;
             justify-content: center;
             height: 50px;
-            background-color: #f8f9fa; /* Nouvelle couleur de fond */
-            border-bottom: 1px solid #dee2e6; /* Bordure en bas */
         }
         
         .panel-body {
@@ -32,38 +30,15 @@
             width: 100%;
         }
         .title {
-            color: #1a1a1a;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-weight: bold;
+            color: #1a1a1a; /* Couleur du texte en bleu foncé */
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Police pertinente */
+            font-weight: bold; /* Police en gras */
         }
+        /* Ajoutez cette partie de code ici */
         #notice {
             font-size: 14px;
             font-style: italic;
             padding: 10px;
-        }
-        /* Nouveaux styles */
-        body {
-            background-color: #f8f9fa;
-        }
-        .container {
-            background-color: #fff;
-            border-radius: 5px;
-            padding: 20px;
-            margin-top: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .nav-tabs > li > a {
-            background-color: #f8f9fa;
-            border: none;
-            color: #343a40;
-        }
-        .nav-tabs > li.active > a {
-            background-color: #fff;
-            border-bottom: 2px solid #007bff;
-            color: #007bff;
-        }
-        button {
-            border-radius: 5px;
         }
     </style>
     
@@ -80,42 +55,36 @@
             <div class="col-md-12 text-center">
                 <h1 class="title" style="display: inline;">Check products by images</h1>
                 <img src="https://media.licdn.com/dms/image/C4D0BAQHsraTd3xGEjA/company-logo_200_200/0/1519881983985?e=2147483647&v=beta&t=C_GVpdZcmq0khwgVS5MGgOlaj3zPAIzZDBQaC0HlyyI" alt="Logo de l'entreprise" style="height: 200px; margin-left: 20px;">
-                <div id="notice" class="alert alert-info" role="alert">
-                    Upload an image of the product you want to search and find similar products by images.
-                </div>
+                <div id="notice" class="text-right"></div>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#tab1">Onglet 1</a></li>
+                    <li><a data-toggle="tab" href="#tab2">Onglet 2</a></li>
+                </ul>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 custom-col">
-                <div class="panel-heading">How it works</div>
-                <div class="panel-body">
-                    <p>Upload your product image and our advanced AI will analyze it to find similar products in our database. This will help you quickly find and compare products based on their visual characteristics.</p>
+        <div class="tab-content">
+            <div id="tab1" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <form id="search-form">
+                            <div class="form-group">
+                                <label for="product-names">Product names (one per line):</label>
+                                <textarea class="form-control" id="product-names" rows="10" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Load Images</button>
+                            <button id="download-button" type="button" class="btn btn-success btn-block" hidden>Download CSV</button>
+                        </form>
+                    </div>
                 </div>
+                <div id="results" class="row" style="margin-top: 20px;"></div>
             </div>
-            <div class="col-md-6 custom-col">
-                <div class="panel-heading">Upload your image</div>
-                <div class="panel-body">
-                    <form action="/upload" method="post" enctype="multipart/form-data">
-                        <div class="input-group">
-                            <input type="file" name="product_image" accept="image/*" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Find similar products</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel-heading">Results</div>
-                <div id="results" class="panel-body">
-                    <!-- The results will be displayed here after processing -->
-                </div>
+            <div id="tab2" class="tab-pane fade">
+                <h3>Produits filtrés</h3>
+                <select id="filter-select" class="form-control" style="width: 50%;"></select>
+                <div id="filtered-product-names"></div>
+                <button id="regex-test-button" class="btn btn-primary" style="margin-top: 10px;">Tester regex</button>
             </div>
         </div>
     </div>
-    <script>
-        // Add any custom JavaScript here if needed
-    </script>
+    <script src="/static/script.js"></script>
 </body>
 </html>
-
