@@ -27,9 +27,6 @@ def get_image_url(product_name):
     else:
         return jsonify({"image_url": None})
 
-if __name__ == "__main__":
-    app.run(debug=True)
-    
 def ask_gpt(prompt):
     response = openai.Completion.create(
         engine="davinci-codex",
@@ -51,3 +48,6 @@ def handle_ask_gpt():
     gpt_response = ask_gpt(prompt)
 
     return jsonify({'response': gpt_response})
+
+if __name__ == "__main__":
+    app.run(debug=True)
