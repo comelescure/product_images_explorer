@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 import openai
 import os
 from flask import Flask, jsonify, request
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 openai.api_key = os.environ[f'ma_cle_secret_openia']
 
@@ -40,14 +42,25 @@ def ask_gpt(prompt):
     return response.choices[0].text.strip()
 
 @app.route('/ask_gpt', methods=['GET'])
+@app.route('/ask_gpt', methods=['GET'])
 def handle_ask_gpt():
-    question = request.args.get('question', '')
-    product_name = request.args.get('product_name', '')
-    
-    prompt = f"{question} {product_name}"
-    gpt_response = ask_gpt(prompt)
+    try:
+        question = request.args.get('question', '')
+        product_name = request.args.get('product_name', '')
+        
+        logging.debug(f"Question: {question}")
+        logging.debug(f"Product Name: {product_name}")
 
-    return jsonify({'response': gpt_response})
+        prompt = f"{question} {product_name}"
+        gpt_response = ask_gpt(prompt)
+
+        logging.debug(f"GPT Response: {gpt_response}")
+
+        return jsonify({'response': gpt_response})
+    except Exception as e:
+        logging.exception("Error in handle_ask_gpt")
+        return jsonify({'error': str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)
