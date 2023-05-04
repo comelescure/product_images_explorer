@@ -43,23 +43,18 @@ def ask_gpt(prompt):
 
 @app.route('/ask_gpt', methods=['GET'])
 @app.route('/ask_gpt', methods=['GET'])
-def handle_ask_gpt():
-    try:
-        question = request.args.get('question', '')
-        product_name = request.args.get('product_name', '')
-        
-        logging.debug(f"Question: {question}")
-        logging.debug(f"Product Name: {product_name}")
+def ask_gpt(prompt):
+    response = openai.Completion.create(
+        engine="davinci-codex",
+        prompt=prompt,
+        max_tokens=50,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
 
-        prompt = f"{question} {product_name}"
-        gpt_response = ask_gpt(prompt)
+    return response.choices[0].text.strip()
 
-        logging.debug(f"GPT Response: {gpt_response}")
-
-        return jsonify({'response': gpt_response})
-    except Exception as e:
-        logging.exception("Error in handle_ask_gpt")
-        return jsonify({'error': str(e)}), 500
 
 
 if __name__ == "__main__":
