@@ -35,11 +35,12 @@ def ask_gpt(prompt):
         prompt=f"I need information about this product: {prompt}. Can you give me some details?",
         max_tokens=100,
         n=1,
-        stop=None,
+        stop="\n",
         temperature=0.5,
     )
 
     return response.choices[0].text.strip()
+
 
 
 @app.route('/ask_gpt', methods=['GET'])
