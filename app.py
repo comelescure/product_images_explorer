@@ -33,13 +33,14 @@ def ask_gpt(prompt):
     response = openai.Completion.create(
         engine="davinci",
         prompt=f"I'm an AI language model, and I need information about this product: {prompt}. Can you give me some details?",
-        max_tokens=100,
+        max_tokens=150,
         n=1,
         stop=["\n", ".", "?", "!"],
-        temperature=0.5,
+        temperature=0.8,
     )
 
     return response.choices[0].text.strip()
+
 
 
 
