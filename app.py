@@ -44,13 +44,12 @@ def ask_gpt(prompt):
 
 @app.route('/ask_gpt', methods=['GET'])
 def handle_ask_gpt():
-    question = request.args.get('question', '')
     product_name = request.args.get('product_name', '')
     
-    prompt = f"{question} {product_name}"
-    gpt_response = ask_gpt(prompt)
+    gpt_response = ask_gpt(product_name)
 
     return jsonify({'response': gpt_response})
+
 
 
 
