@@ -32,14 +32,16 @@ def get_image_url(product_name):
 def ask_gpt(prompt):
     response = openai.Completion.create(
         engine="davinci",
-        prompt=f"I need information about this product: {prompt}. Can you give me some details?",
+        prompt=f"I'm an AI language model, and I need information about this product: {prompt}. Can you give me some details?",
         max_tokens=100,
         n=1,
-        stop="\n",
+        stop=["\n", ".", "?", "!"],
         temperature=0.5,
     )
 
     return response.choices[0].text.strip()
+
+
 
 
 
