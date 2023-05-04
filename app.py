@@ -42,7 +42,6 @@ def ask_gpt(prompt):
     return response.choices[0].text.strip()
 
 @app.route('/ask_gpt', methods=['GET'])
-@app.route('/ask_gpt', methods=['GET'])
 def ask_gpt(prompt):
     response = openai.Completion.create(
         engine="davinci-codex",
@@ -54,7 +53,6 @@ def ask_gpt(prompt):
     )
 
     return response.choices[0].text.strip()
-
 
 
 if __name__ == "__main__":
