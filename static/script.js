@@ -68,7 +68,7 @@ function createImagePanel(productName, imageUrl) {
             if (data.response) {
                 alert(data.response);
             } else {
-                alert("Pas de réponse de l'IA pour le moment.");
+                alert("No response from the AI at this time.");
             }
         } catch (error) {
             console.error(error);
