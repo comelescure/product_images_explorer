@@ -1,6 +1,11 @@
 from flask import Flask, render_template, jsonify
 import requests
 from bs4 import BeautifulSoup
+import openai
+import os
+from flask import Flask, jsonify, request
+
+openai.api_key = os.environ["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"]
 
 app = Flask(__name__)
 
@@ -24,3 +29,25 @@ def get_image_url(product_name):
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
+def ask_gpt(prompt):
+    response = openai.Completion.create(
+        engine="davinci-codex",
+        prompt=prompt,
+        max_tokens=50,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+
+    return response.choices[0].text.strip()
+
+@app.route('/ask_gpt', methods=['GET'])
+def handle_ask_gpt():
+    question = request.args.get('question', '')
+    product_name = request.args.get('product_name', '')
+    
+    prompt = f"{question} {product_name}"
+    gpt_response = ask_gpt(prompt)
+
+    return jsonify({'response': gpt_response})

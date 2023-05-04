@@ -52,6 +52,20 @@ function createImagePanel(productName, imageUrl) {
      // Ajoutez le bouton à la structure HTML
      panelBody.appendChild(moreImagesButton);
 
+     // Créez un nouveau bouton pour ChatGPT
+    const askGPTButton = document.createElement("button");
+    askGPTButton.className = "btn btn-info";
+    askGPTButton.textContent = "Ask to GPT";
+    askGPTButton.style.marginTop = "10px";
+
+    askGPTButton.addEventListener("click", () => {
+        const gptResponseUrl = `/ask_gpt?question=${encodeURIComponent("What is this product?")}&product_name=${encodeURIComponent(productName)}`;
+        window.open(gptResponseUrl, '_blank');
+    });
+    
+
+    panelBody.appendChild(askGPTButton);
+
     return col;
     
     
