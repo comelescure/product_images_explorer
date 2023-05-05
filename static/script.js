@@ -277,14 +277,6 @@ document.getElementById("category-search").addEventListener("input", function (e
 });
 
 
-function displayCategories(categories) {
-    const container = document.querySelector("#categoryTree");
-    categories.forEach(category => {
-        const categoryElement = document.createElement("div");
-        categoryElement.textContent = category;
-        container.appendChild(categoryElement);
-    });
-}
 
 loadCategories();
 
