@@ -214,7 +214,20 @@ function displayCategorySearchResults(categories) {
       categoryResults.append(categoryDiv);
     });
   }
-  
+
+  function displayCategories(categories) {
+    const container = document.querySelector("#categoryTree");
+    categories.forEach(category => {
+        const categoryElement = document.createElement("div");
+        categoryElement.textContent = category;
+
+        const granularities = category.split('_');
+        categoryElement.className = `granularity-${granularities.length - 1}`;
+
+        container.appendChild(categoryElement);
+    });
+}
+
 
 document.getElementById("search-form").addEventListener("submit", handleSearch);
 document.getElementById("download-button").addEventListener("click", downloadCSV);
@@ -257,6 +270,13 @@ async function loadCategories() {
     displayCategories(categories);
 }
 
+document.getElementById("category-search").addEventListener("input", function (event) {
+    const searchQuery = event.target.value.toLowerCase();
+    const filteredCategories = categories.filter(category => category.toLowerCase().includes(searchQuery));
+    displayCategorySearchResults(filteredCategories);
+});
+
+
 function displayCategories(categories) {
     const container = document.querySelector("#categoryTree");
     categories.forEach(category => {
@@ -267,3 +287,4 @@ function displayCategories(categories) {
 }
 
 loadCategories();
+
