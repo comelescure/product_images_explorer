@@ -192,7 +192,29 @@ function redirectToRegex101() {
     window.open(regex101Url, '_blank');
 }
 
-
+function displayCategorySearchResults(categories) {
+    const categoryResults = $("#category-results");
+    categoryResults.empty();
+  
+    if (categories.length === 0) {
+      categoryResults.append('<p class="text-center">Aucune catégorie trouvée.</p>');
+      return;
+    }
+  
+    categories.forEach(category => {
+      const categoryDiv = $('<div class="col-md-4"></div>');
+      const categoryPanel = $('<div class="panel panel-default"></div>');
+      const categoryPanelHeading = $('<div class="panel-heading"></div>');
+      const categoryPanelBody = $('<div class="panel-body"></div>');
+  
+      categoryPanelHeading.text(category);
+      categoryPanel.append(categoryPanelHeading);
+      categoryPanel.append(categoryPanelBody);
+      categoryDiv.append(categoryPanel);
+      categoryResults.append(categoryDiv);
+    });
+  }
+  
 
 document.getElementById("search-form").addEventListener("submit", handleSearch);
 document.getElementById("download-button").addEventListener("click", downloadCSV);
@@ -229,3 +251,19 @@ document.getElementById('regex-test-button').addEventListener('click', function(
 
 document.getElementById("notice").innerHTML = createNotice();
 
+async function loadCategories() {
+    const response = await fetch('/static/categories.json');
+    const categories = await response.json();
+    displayCategories(categories);
+}
+
+function displayCategories(categories) {
+    const container = document.querySelector("#categoryTree");
+    categories.forEach(category => {
+        const categoryElement = document.createElement("div");
+        categoryElement.textContent = category;
+        container.appendChild(categoryElement);
+    });
+}
+
+loadCategories();

@@ -59,6 +59,29 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#tab1">Onglet 1</a></li>
                     <li><a data-toggle="tab" href="#tab2">Onglet 2</a></li>
+                    <!-- Ajoutez ceci à la barre de navigation où se trouvent vos autres onglets -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categoryTree" data-toggle="tab">Arbre de catégories</a>
+                    </li>
+                    
+                    <!-- Ajoutez ceci dans la section de contenu pour les onglets -->
+                    <div class="tab-pane" id="categoryTree">
+                        <!-- Le contenu de l'arbre de catégories sera ajouté ici -->
+                    </div>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                            <form id="category-search-form">
+                                <div class="form-group">
+                                <label for="category-search">Recherche de catégorie :</label>
+                                <input type="text" class="form-control" id="category-search" placeholder="Entrez une catégorie" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Rechercher</button>
+                            </form>
+                            </div>
+                        </div>
+                    <div id="category-results" class="row" style="margin-top: 20px;"></div>
+                      
+  
                 </ul>
             </div>
         <div class="tab-content">
