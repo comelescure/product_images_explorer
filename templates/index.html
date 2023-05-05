@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check products by images</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         .custom-col {
             display: flex;
@@ -8,20 +16,20 @@
             justify-content: space-between;
             height: 100%;
         }
-    
+
         .panel-heading {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 50px;
         }
-        
+
         .panel-body {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-    
+
         .input-group {
             margin-top: 10px;
             align-items: center;
@@ -41,26 +49,22 @@
             padding: 10px;
         }
     </style>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check products by images</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h1 class="title" style="display: inline;">Check products by images</h1>
-                <img src="https://media.licdn.com/dms/image/C4D0BAQHsraTd3xGEjA/company-logo_200_200/0/1519881983985?e=2147483647&v=beta&t=C_GVpdZcmq0khwgVS5MGgOlaj3zPAIzZDBQaC0HlyyI" alt="Logo de l'entreprise" style="height: 200px; margin-left: 20px;">
-                <div id="notice" class="text-right"></div>
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab1">Onglet 1</a></li>
-                    <li><a data-toggle="tab" href="#tab2">Onglet 2</a></li>
-                </ul>
-            </div>
+        <header class="app-header">
+            <h1 class="title">Check products by images</h1>
+            <img src="https://media.licdn.com/dms/image/C4D0BAQHsraTd3xGEjA/company-logo_200_200/0/1519881983985?e=2147483647&v=beta&t=C_GVpdZcmq0khwgVS5MGgOlaj3zPAIzZDBQaC0HlyyI"
+                alt="Logo de l'entreprise" class="company-logo">
+            <div id="notice" class="text-right"></div>
+        </header>
+        <nav>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab1">Onglet 1</a></li>
+                <li><a data-toggle="tab" href="#tab2">Onglet 2</a></li>
+            </ul>
+        </nav>
         <div class="tab-content">
             <div id="tab1" class="tab-pane fade in active">
                 <div class="row">
@@ -71,7 +75,8 @@
                                 <textarea class="form-control" id="product-names" rows="10" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Load Images</button>
-                            <button id="download-button" type="button" class="btn btn-success btn-block" hidden>Download CSV</button>
+                            <button id="download-button" type="button" class="btn btn-success btn-block" hidden>Download
+                                CSV</button>
                         </form>
                     </div>
                 </div>
@@ -79,12 +84,17 @@
             </div>
             <div id="tab2" class="tab-pane fade">
                 <h3>Produits filtrés</h3>
-                <select id="filter-select" class="form-control" style="width: 50%;"></select>
-                <div id="filtered-product-names"></div>
-                <button id="regex-test-button" class="btn btn-primary" style="margin-top: 10px;">Tester regex</button>
+                <select id="filter-select" class="form-control" style="width: 50%; margin-bottom: 20px;">
+                    <option value="all">Tous les produits</option>
+                    <option value="available">Produits disponibles</option>
+                    <option value="unavailable">Produits indisponibles</option>
+                </select>
+                <div id="filtered-results" class="row" style="margin-top: 20px;"></div>
             </div>
         </div>
     </div>
-    <script src="/static/script.js"></script>
+
+    <script src="app.js"></script>
 </body>
+
 </html>
