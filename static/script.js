@@ -229,6 +229,56 @@ function displayCategorySearchResults(categories) {
 }
 
 
+function convertCategoriesToHierarchy(categories) {
+    const hierarchy = {};
+
+    categories.forEach(category => {
+        const levels = category.split('_');
+
+        let currentLevel = hierarchy;
+
+        levels.forEach(level => {
+            if (!currentLevel[level]) {
+                currentLevel[level] = {
+                    name: level,
+                    subcategories: {}
+                };
+            }
+
+            currentLevel = currentLevel[level].subcategories;
+        });
+    });
+
+    return hierarchy;
+}
+
+function flattenHierarchy(hierarchy) {
+    const categories = [];
+
+    function traverse(node, path = []) {
+        categories.push({
+            name: node.name,
+            subcategories: Object.values(node.subcategories)
+        });
+
+        path.push(node.name);
+
+        Object.values(node.subcategories).forEach(subcategory => {
+            traverse(subcategory, path);
+        });
+
+        path.pop();
+    }
+
+    traverse(hierarchy);
+
+    return categories;
+}
+
+
+
+
+
 document.getElementById("search-form").addEventListener("submit", handleSearch);
 document.getElementById("download-button").addEventListener("click", downloadCSV);
 
@@ -267,15 +317,18 @@ document.getElementById("notice").innerHTML = createNotice();
 async function loadCategories() {
     const response = await fetch('/static/categories.json');
     const categories = await response.json();
-    displayCategories(categories);
+    const hierarchy = convertCategoriesToHierarchy(categories);
+    const hierarchicalCategories = flattenHierarchy(hierarchy);
+    const container = document.querySelector("#categoryTree");
+    displayCategories(hierarchicalCategories, container);
 }
+
 
 document.getElementById("category-search").addEventListener("input", function (event) {
     const searchQuery = event.target.value.toLowerCase();
     const filteredCategories = categories.filter(category => category.toLowerCase().includes(searchQuery));
     displayCategorySearchResults(filteredCategories);
 });
-
 
 
 loadCategories();
