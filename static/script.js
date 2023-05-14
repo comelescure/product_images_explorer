@@ -1,4 +1,4 @@
-function createImagePanel(productName, imageUrl) {
+function createImagePanel(productName, imageUrl, category) {
     const col = document.createElement("div");
     col.className = "col-md-4 custom-col";
 
@@ -11,6 +11,13 @@ function createImagePanel(productName, imageUrl) {
 
     const panelBody = document.createElement("div");
     panelBody.className = "panel-body";
+
+    // Ajoutez la catégorie sous l'image si elle est fournie
+    if (category) {
+        const categoryElement = document.createElement("p");
+        categoryElement.textContent = category;
+        panelBody.appendChild(categoryElement);
+    }
 
     const img = document.createElement("img");
     img.src = imageUrl;
@@ -37,6 +44,7 @@ function createImagePanel(productName, imageUrl) {
     panel.appendChild(panelBody);
     col.appendChild(panel);
     
+
      // Créez un nouveau bouton
      const moreImagesButton = document.createElement("button");
      moreImagesButton.className = "btn btn-info";
@@ -170,19 +178,27 @@ function updateFilterSelect() {
 async function handleSearch(event) {
     event.preventDefault();
     const productNames = document.getElementById("product-names").value.split(/\r?\n/).map(name => name.trim()).filter(name => name !== "");
+
+    let breadcrumbs = [];
+    if (document.getElementById("provide-breadcrumb").checked) {
+        breadcrumbs = document.getElementById("breadcrumbs").value.split(/\r?\n/).map(name => name.trim());
+    }
+
     const results = document.getElementById("results");
     results.innerHTML = "";
 
-    for (const productName of productNames) {
+    for (let i = 0; i < productNames.length; i++) {
+        const productName = productNames[i];
         const cleanedProductName = productName.replace(/\//g, ''); // Supprime les barres obliques
         const response = await fetch(`/get_image_url/${encodeURIComponent(cleanedProductName)}`);
         const data = await response.json();
-        const imagePanel = createImagePanel(cleanedProductName, data.image_url);
+        const imagePanel = createImagePanel(cleanedProductName, data.image_url, breadcrumbs[i]);
         results.appendChild(imagePanel);
     }
 
     updateFilterSelect();
 }
+
 
 function redirectToRegex101() {
     const filteredProductNames = document.getElementById("filtered-product-names");
@@ -333,3 +349,11 @@ document.getElementById("category-search").addEventListener("input", function (e
 
 loadCategories();
 
+document.getElementById("provide-breadcrumb").addEventListener("change", function (event) {
+    const breadcrumbInputGroup = document.getElementById("breadcrumb-input-group");
+    if (event.target.checked) {
+        breadcrumbInputGroup.style.display = "block";
+    } else {
+        breadcrumbInputGroup.style.display = "none";
+    }
+});
