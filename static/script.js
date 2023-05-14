@@ -36,7 +36,7 @@ function createImagePanel(productName, imageUrl, category) {
     const userInput = document.createElement("input");
     userInput.type = "text";
     userInput.className = "form-control";
-    userInput.setAttribute("placeholder", "Ajoutez des informations");
+    userInput.setAttribute("placeholder", "Add informations");
 
     userInput.addEventListener("change", updateFilterSelect);
 
@@ -92,7 +92,7 @@ function createImagePanel(productName, imageUrl, category) {
 function downloadCSV() {
     const panelHeadings = document.querySelectorAll("#results .panel-heading");
     const allUserInfos = document.querySelectorAll(".form-control");
-    const userInfos = Array.from(allUserInfos).slice(1); // Exclut la première zone de texte
+    const userInfos = Array.from(allUserInfos).slice(2); // Exclut la première zone de texte
 
     let csvContent = "data:text/csv;charset=utf-8,";
     csvContent += "name,user_info\n";
@@ -131,7 +131,7 @@ function getUniqueUserInputs() {
     const uniqueInputs = new Set();
 
     // Ignorer la première zone de texte
-    const userInputsArray = Array.from(userInputs).slice(1);
+    const userInputsArray = Array.from(userInputs).slice(2);
 
     userInputsArray.forEach(input => {
         if (input.value) {
@@ -306,7 +306,7 @@ document.getElementById("filter-select").addEventListener("change", function (ev
     const userInfos = document.querySelectorAll(".form-control");
 
     // Ignorer la première zone de texte 
-    const userInfosArray = Array.from(userInfos).slice(1);
+    const userInfosArray = Array.from(userInfos).slice(2);
 
     productNames.forEach((productName, index) => {
         if (userInfosArray[index].value === filter) {
