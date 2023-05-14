@@ -12,22 +12,23 @@ function createImagePanel(productName, imageUrl, category) {
     const panelBody = document.createElement("div");
     panelBody.className = "panel-body";
 
-    // Ajoutez la catégorie sous l'image si elle est fournie
-    if (category) {
-        const categoryElement = document.createElement("p");
-        categoryElement.textContent = category;
-        panelBody.appendChild(categoryElement);
-    }
-
     const img = document.createElement("img");
     img.src = imageUrl;
     img.width = 150;
     img.style.height = '150px'; 
 
+    panelBody.appendChild(img);
+
+    // Ajoutez la catégorie sous l'image si elle est fournie
+    if (category) {
+        const categoryElement = document.createElement("p");
+        categoryElement.textContent = `Breadcrumb : \n${category}`;
+        panelBody.appendChild(categoryElement);
+    }
+
     const inputGroup = document.createElement("div");
     inputGroup.className = "input-group";
     inputGroup.style.marginTop = "10px";
-
 
     const userInput = document.createElement("input");
     userInput.type = "text";
@@ -37,30 +38,20 @@ function createImagePanel(productName, imageUrl, category) {
     userInput.addEventListener("change", updateFilterSelect);
 
     inputGroup.appendChild(userInput);
-
-    panelBody.appendChild(img);
     panelBody.appendChild(inputGroup);
-    panel.appendChild(panelHeading);
-    panel.appendChild(panelBody);
-    col.appendChild(panel);
-    
 
-     // Créez un nouveau bouton
-     const moreImagesButton = document.createElement("button");
-     moreImagesButton.className = "btn btn-info";
-     moreImagesButton.textContent = "See more images";
-     moreImagesButton.style.marginTop = "10px";
- 
-     // Ajoutez un gestionnaire d'événements "click" au bouton
-     moreImagesButton.addEventListener("click", () => {
-         const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(productName)}&tbm=isch`;
-         window.open(searchUrl, '_blank');
-     });
- 
-     // Ajoutez le bouton à la structure HTML
-     panelBody.appendChild(moreImagesButton);
+    const moreImagesButton = document.createElement("button");
+    moreImagesButton.className = "btn btn-info";
+    moreImagesButton.textContent = "See more images";
+    moreImagesButton.style.marginTop = "10px";
 
-     // Créez un nouveau bouton pour ChatGPT
+    moreImagesButton.addEventListener("click", () => {
+        const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(productName)}&tbm=isch`;
+        window.open(searchUrl, '_blank');
+    });
+
+    panelBody.appendChild(moreImagesButton);
+
     const askGPTButton = document.createElement("button");
     askGPTButton.className = "btn btn-info";
     askGPTButton.textContent = "Ask to GPT (Under development)";
@@ -83,15 +74,16 @@ function createImagePanel(productName, imageUrl, category) {
             alert("Erreur lors de la récupération de la réponse de l'IA.");
         }
     });
-    
-    
 
     panelBody.appendChild(askGPTButton);
 
+    panel.appendChild(panelHeading);
+    panel.appendChild(panelBody);
+    col.appendChild(panel);
+
     return col;
-    
-    
 }
+
 
 
 function downloadCSV() {
