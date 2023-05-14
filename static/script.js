@@ -22,7 +22,10 @@ function createImagePanel(productName, imageUrl, category) {
     // Ajoutez la catégorie sous l'image si elle est fournie
     if (category) {
         const categoryElement = document.createElement("p");
-        categoryElement.textContent = `Breadcrumb : \n${category}`;
+        categoryElement.innerHTML = `Breadcrumb : <br>${category}`;
+        categoryElement.style.textAlign = "center";
+        categoryElement.style.overflowY = "auto";
+        categoryElement.style.maxHeight = "50px"; // Ajustez cette valeur en fonction de vos besoins
         panelBody.appendChild(categoryElement);
     }
 
