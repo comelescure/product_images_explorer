@@ -61,7 +61,7 @@ function createImagePanel(productName, imageUrl, category) {
     askGPTButton.style.marginTop = "10px";
 
     askGPTButton.addEventListener("click", async () => {
-        const gptResponseUrl = `/ask_gpt?question=${encodeURIComponent("What is this product?")}&product_name=${encodeURIComponent(productName)}`;
+        const gptResponseUrl = `/ask_gpt?product_name=${encodeURIComponent(productName)}`;
     
         try {
             const response = await fetch(gptResponseUrl);
