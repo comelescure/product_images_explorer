@@ -7,7 +7,7 @@ from flask import Flask, jsonify, request
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
-openai.api_key = os.environ[f'ma_cle_secret_openia']
+openai.api_key = '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'
 
 app = Flask(__name__)
 
