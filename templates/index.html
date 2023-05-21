@@ -70,6 +70,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<script>
+    document.getElementById('load-images-button').addEventListener('click', function() {
+        this.disabled = true;
+    });
+</script>
 <body>
     <div class="container">
         <div class="row">
@@ -102,7 +107,7 @@
                                 <input type="checkbox" id="provide-breadcrumb" name="provide-breadcrumb" value="ProvideBreadcrumb">
                                 <label for="provide-breadcrumb">Provide breadcrumb</label>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Load Images</button>
+                            <button id="load-images-button" type="submit" class="btn btn-primary btn-block">Load Images</button>
                             <button id="download-button" type="button" class="btn btn-success btn-block" hidden>Download CSV</button>
                         </form>
                     </div>
