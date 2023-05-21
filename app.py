@@ -32,7 +32,7 @@ def get_image_url(product_name):
 def ask_gpt(prompt):
     response = openai.Completion.create(
         engine="davinci",
-        prompt=f"Can you provide a detailed description of at least 3 sentences on the following product : {prompt}?",
+        prompt=f"Act as a Product Information Generator. Can you provide a detailed description of at least 3 sentences on the following product : {prompt}?",
         max_tokens=200,
         temperature=0.5,  # Conserver la température réduite pour obtenir des réponses plus cohérentes
         n=1,
