@@ -133,9 +133,10 @@
     </div>
     <script src="/static/script.js"></script>
     <script>
-        document.getElementById('load-images-button').addEventListener('click', function() {
-            this.disabled = true;
+        document.getElementById('search-form').addEventListener('submit', function() {
+            document.getElementById('load-images-button').disabled = true;
         });
     </script>
+    
 </body>
 </html>
