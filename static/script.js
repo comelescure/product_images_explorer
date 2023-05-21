@@ -199,7 +199,7 @@ function redirectToRegex101() {
     const filteredProductNames = document.getElementById("filtered-product-names");
     const productNamesText = filteredProductNames.innerText;
     const encodedProductNames = encodeURIComponent(productNamesText);
-    const regex101Url = `https://regex101.com/?#regex=${encodedProductNames}`;
+    const regex101Url = `https://regex101.com/?regex=&testString=${encodeURIComponent(productNames)}`;
     window.open(regex101Url, '_blank');
 }
 
