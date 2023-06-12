@@ -141,7 +141,7 @@
     <script>
         window.onload = function() {
         let productNames = new URLSearchParams(window.location.search).get('products');
-        productNames = productNames ? productNames.split(",") : [];
+        productNames = productNames ? productNames.split(";") : [];
     
         let textarea = document.getElementById("product-names");
         if (textarea) {
