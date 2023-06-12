@@ -139,14 +139,15 @@
         });
     </script>
     <script>
-        let productNames = "{{ product_names|join('\n') }}";
-      
         window.onload = function() {
-          let textarea = document.getElementById("product-names");
-          if (textarea) {
-            textarea.value = productNames;
-          }
+        let productNames = new URLSearchParams(window.location.search).get('products');
+        productNames = productNames ? productNames.split(",") : [];
+    
+        let textarea = document.getElementById("product-names");
+        if (textarea) {
+            textarea.value = productNames.join("\n");
         }
-      </script>    
+        }
+    </script>    
 </body>
 </html>
