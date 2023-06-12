@@ -70,6 +70,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="row">
@@ -137,6 +138,15 @@
             document.getElementById('load-images-button').disabled = true;
         });
     </script>
-    
+    <script>
+        let productNames = "{{ product_names|join('\n') }}";
+      
+        window.onload = function() {
+          let textarea = document.getElementById("product-names");
+          if (textarea) {
+            textarea.value = productNames;
+          }
+        }
+      </script>    
 </body>
 </html>

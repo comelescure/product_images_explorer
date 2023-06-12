@@ -13,7 +13,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    products = request.args.get('products', '')
+    product_names = products.split(',') if products else []
+    return render_template("index.html", product_names=product_names)
+
 
 @app.route("/get_image_url/<product_name>")
 def get_image_url(product_name):
