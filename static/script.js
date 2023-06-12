@@ -168,10 +168,6 @@ function updateFilterSelect() {
     });
 }
 
-function updateUrl(productName) {
-    history.pushState(null, '', `/product/${encodeURIComponent(productName)}`);
-}
-
 
 
 async function handleSearch(event) {
@@ -188,7 +184,6 @@ async function handleSearch(event) {
 
     for (let i = 0; i < productNames.length; i++) {
         const productName = productNames[i];
-        updateUrl(productName); // Ajoutez cette ligne
         const cleanedProductName = productName.replace(/\//g, ''); // Supprime les barres obliques
         const response = await fetch(`/get_image_url/${encodeURIComponent(cleanedProductName)}`);
         const data = await response.json();
@@ -198,7 +193,6 @@ async function handleSearch(event) {
 
     updateFilterSelect();
 }
-
 
 
 function redirectToRegex101() {

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, url_for
+from flask import Flask, render_template, jsonify
 import requests
 from bs4 import BeautifulSoup
 import openai
@@ -57,9 +57,6 @@ def handle_ask_gpt():
     return jsonify({'response': gpt_response})
 
 
-@app.route("/product/<product_name>")
-def product(product_name):
-    return redirect(url_for('get_image_url', product_name=product_name))
 
 
 if __name__ == "__main__":
