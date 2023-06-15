@@ -28,7 +28,7 @@ def get_image_url(product_name):
     url = f"https://www.google.com/search?q={query}&tbm=isch"
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
-    img_tag = soup.find("img", {"class": "Q4LuWd"})
+    img_tag = soup.find("img", {"class": "yWs4tf"})
 
     if img_tag is not None:
         img_link = img_tag.get("src")
