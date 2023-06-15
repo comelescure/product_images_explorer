@@ -12,9 +12,13 @@ openai.api_key = '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'
 app = Flask(__name__)
 
 @app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
-    products = request.args.get('products', '')
-    product_names = products.split(',') if products else []
+    if request.method == 'POST':
+        product_names = request.get_json()
+    else:
+        products = request.args.get('products', '')
+        product_names = products.split(',') if products else []
     return render_template("index.html", product_names=product_names)
 
 
@@ -24,7 +28,7 @@ def get_image_url(product_name):
     url = f"https://www.google.com/search?q={query}&tbm=isch"
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
-    img_tag = soup.find("img", {"class": "yWs4tf"})
+    img_tag = soup.find("img", {"class": "rg_i Q4LuWd"})
 
     if img_tag is not None:
         img_link = img_tag.get("src")
