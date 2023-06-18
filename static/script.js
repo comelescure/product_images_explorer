@@ -318,7 +318,7 @@ document.getElementById("filter-select").addEventListener("change", function (ev
 });
 document.getElementById('regex-test-button').addEventListener('click', function() {
     const productNames = document.getElementById('filtered-product-names').innerText;
-    const regex101Url = `https://regex101.com/?regex=&testString=${encodeURIComponent(productNames)}&flags=&subst=&delimiter=`;
+    const regex101Url = `https://regex101.com/`;
 
     window.open(regex101Url, '_blank');
 });
