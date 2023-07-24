@@ -22,19 +22,36 @@ def index():
     return render_template("index.html", product_names=product_names)
 
 
+##@app.route("/get_image_url/<product_name>")
+##def get_image_url(product_name):
+##    query = product_name
+##    url = f"https://www.google.com/search?q={query}&tbm=isch"
+##    response = requests.get(url)
+##    soup = BeautifulSoup(response.text, "html.parser")
+##    img_tag = soup.find("img", {"class": "yWs4tf"})
+##
+##    if img_tag is not None:
+##        img_link = img_tag.get("src")
+##        return jsonify({"image_url": img_link})
+##    else:
+##        return jsonify({"image_url": None})
+    
 @app.route("/get_image_url/<product_name>")
 def get_image_url(product_name):
     query = product_name
     url = f"https://www.google.com/search?q={query}&tbm=isch"
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
-    img_tag = soup.find("img", {"class": "yWs4tf"})
+    img_tags = soup.find_all("img")
 
-    if img_tag is not None:
-        img_link = img_tag.get("src")
+    if img_tags:
+        img_link = img_tags[1].get("src") if len(img_tags) > 1 else img_tags[0].get("src")
         return jsonify({"image_url": img_link})
     else:
         return jsonify({"image_url": None})
+
+
+
 
 def ask_gpt(prompt):
     response = openai.Completion.create(
